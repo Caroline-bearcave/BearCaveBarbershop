@@ -1,0 +1,88 @@
+.section {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.left {
+  background-color: var(--color-teal);
+  background-image: linear-gradient(
+      rgba(8, 36, 38, 0.72),
+      rgba(8, 36, 38, 0.72)
+    ),
+    url("/background1.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--text-on-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.25rem;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.headlineLine {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  line-height: 1.05;
+  color: var(--color-cream);
+  text-transform: uppercase;
+}
+
+.subtext {
+  margin: 1.5rem auto 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(242, 234, 216, 0.75);
+  max-width: 32ch;
+  text-align: center;
+}
+
+.right {
+  background: var(--color-teal-deep);
+  color: var(--text-on-dark);
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+}
+
+.menuHeading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+  color: var(--color-cream);
+  margin-bottom: 1rem;
+}
+
+.menuIntro {
+  font-size: 1rem;
+  color: rgba(242, 234, 216, 0.75);
+  max-width: 45ch;
+  margin-bottom: 2rem;
+}
+
+.list {
+  border-top: 1px solid rgba(201, 164, 76, 0.4);
+}

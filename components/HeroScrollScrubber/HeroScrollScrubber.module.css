@@ -1,0 +1,86 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-teal-deep);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.revealWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 var(--gutter);
+}
+
+.revealImageWrap {
+  width: min(500px, 70vw);
+  margin-bottom: 10%;
+}
+
+.revealImage {
+  width: 100%;
+  height: auto;
+  /* Backup legibility treatment over the video/canvas backdrop — drop if
+     the final graphic already bakes in enough contrast. */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 12px 40px rgba(0, 0, 0, 0.45));
+}
+
+.featureStripWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8%;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-cream);
+  background: var(--color-teal-deep);
+}
+
+.loadingLabel {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+}
+
+.loadingTrack {
+  width: min(220px, 60vw);
+  height: 2px;
+  background: rgba(242, 234, 216, 0.2);
+}
+
+.loadingFill {
+  height: 100%;
+  background: var(--color-gold);
+  transition: width 0.15s linear;
+}

@@ -1,0 +1,53 @@
+import styles from "./Footer.module.css";
+
+interface FooterProps {
+  hours?: { day: string; time: string }[];
+}
+
+const DEFAULT_HOURS = [
+  { day: "Tue – Sat", time: "9am – 5pm" },
+  { day: "Sun – Mon", time: "Closed" },
+];
+
+export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.grid}>
+        <div>
+          <div className={styles.mark}>Bear Cave Barbershop</div>
+          <p className={styles.tagline}>
+            A den for a proper cut and shave — old-world craft, modern
+            comfort.
+          </p>
+        </div>
+
+        <div>
+          <div className={styles.heading}>Hours</div>
+          <div className={styles.list}>
+            {hours.map((slot) => (
+              <span key={slot.day}>
+                {slot.day} &mdash; {slot.time}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className={styles.heading}>Find Us</div>
+          <div className={styles.list}>
+            <span>1/1a Emerald Street, Cooroy, QLD, Australia</span>
+            <a href="tel:+61402826513">0402 826 513</a>
+            <a href="mailto:hello@bearcavebarbershop.example">
+              hello@bearcavebarbershop.example
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.bottom}>
+        <span>&copy; {new Date().getFullYear()} Bear Cave Barbershop</span>
+        <span>Made with care.</span>
+      </div>
+    </footer>
+  );
+}

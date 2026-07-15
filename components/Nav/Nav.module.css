@@ -1,0 +1,121 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.25rem var(--gutter);
+  min-height: 4.25rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 36, 38, 0.75) 0%,
+    rgba(8, 36, 38, 0) 100%
+  );
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.6s ease, background 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+.navHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navScrolled {
+  background: rgba(8, 36, 38, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.hours {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .hours {
+    font-size: 0.62rem;
+    white-space: normal;
+    max-width: 45vw;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cream);
+  padding: 0.4rem;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 22px;
+}
+
+.hamburger span {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.hamburger[data-open="true"] span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger[data-open="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[data-open="true"] span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 4.5rem;
+  right: var(--gutter);
+  z-index: 49;
+  min-width: 11rem;
+  background: var(--color-teal-deep);
+  border: var(--border-hairline);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
+  padding: 0.85rem;
+}
+
+.mobileLink {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-cream);
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.mobileLink:hover {
+  background: rgba(242, 234, 216, 0.08);
+}

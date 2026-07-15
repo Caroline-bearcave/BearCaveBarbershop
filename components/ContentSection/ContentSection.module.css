@@ -1,0 +1,22 @@
+.section {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--content-max);
+}
+
+.plain {
+  color: var(--text-on-cream);
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: var(--border-hairline);
+  color: var(--text-on-dark);
+  padding: clamp(2rem, 5vw, 3.5rem);
+}

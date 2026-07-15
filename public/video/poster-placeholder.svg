@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d3b3e" />
+      <stop offset="100%" stop-color="#082426" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)" />
+  <text
+    x="960"
+    y="540"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Georgia, serif"
+    font-style="italic"
+    font-size="64"
+    fill="#c9a44c"
+  >
+    Bear Cave Barbershop
+  </text>
+  <text
+    x="960"
+    y="610"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Georgia, serif"
+    font-size="22"
+    letter-spacing="4"
+    fill="#f2ead8"
+    opacity="0.7"
+  >
+    PLACEHOLDER POSTER — REPLACE WITH EXPORTED LAST VIDEO FRAME
+  </text>
+</svg>
