@@ -65,12 +65,9 @@
   background: var(--color-teal-deep);
 }
 
-.loadingLabel {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
-  color: var(--color-gold);
+.loadingLogo {
+  width: min(220px, 50vw);
+  height: auto;
 }
 
 .loadingTrack {

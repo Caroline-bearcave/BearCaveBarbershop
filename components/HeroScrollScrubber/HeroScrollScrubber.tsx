@@ -212,7 +212,13 @@ export default function HeroScrollScrubber({
 
         {videoEnded && !ready && (
           <div className={styles.loading}>
-            <span className={styles.loadingLabel}>Waking the bear&hellip;</span>
+            <Image
+              src={welcomeImageSrc}
+              alt="Welcome to the Bear Cave"
+              width={1000}
+              height={1000}
+              className={styles.loadingLogo}
+            />
             <div className={styles.loadingTrack}>
               <div
                 className={styles.loadingFill}
