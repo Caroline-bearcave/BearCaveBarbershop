@@ -37,7 +37,7 @@ export default function Home() {
 
         <ServicesOverview id="services" />
 
-        <section id="Bear Cave gallery" className={styles.gallerySection}>
+        <section id="gallery" className={styles.gallerySection}>
           <h2 className={styles.sectionHeading}>Bear Cave Gallery</h2>
           <p className={styles.sectionIntro}>
             A look inside the den. Photos coming soon.

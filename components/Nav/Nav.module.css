@@ -38,7 +38,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 0.78rem;
+  font-size: 0.92rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-cream);
@@ -48,7 +49,7 @@
 
 @media (max-width: 640px) {
   .hours {
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     white-space: normal;
     max-width: 45vw;
   }

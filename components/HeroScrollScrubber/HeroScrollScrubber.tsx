@@ -24,7 +24,7 @@ const defaultFrameSrc = (frameNumber: number) =>
 export default function HeroScrollScrubber({
   frameCount = 37,
   getFrameSrc = defaultFrameSrc,
-  scrollDistance = "300vh",
+  scrollDistance = "300dvh",
   videoSrc,
   posterSrc,
   revealAt,

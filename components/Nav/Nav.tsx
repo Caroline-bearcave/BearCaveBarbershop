@@ -67,7 +67,14 @@ export default function Nav({ visible = true }: NavProps) {
               key={link.href}
               href={link.href}
               className={styles.mobileLink}
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setOpen(false);
+                const id = link.href.slice(1);
+                requestAnimationFrame(() => {
+                  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                });
+              }}
             >
               {link.label}
             </a>
