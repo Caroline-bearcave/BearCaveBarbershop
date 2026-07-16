@@ -13,7 +13,7 @@ interface HeroVideoProps {
 
 export default function HeroVideo({
   videoSrc = "/video/bear-sit-to-stand.mp4",
-  posterSrc = "/video/poster-placeholder.svg",
+  posterSrc = "/images/hero-poster.webp",
   revealAt = 3,
   onReveal,
   onEnded,
