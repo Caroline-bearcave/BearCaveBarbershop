@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Nav from "@/components/Nav";
 import HeroScrollScrubber from "@/components/HeroScrollScrubber";
 import ContentSection from "@/components/ContentSection";
@@ -61,10 +61,22 @@ let heroSeenThisLoad = false;
 
 export default function Home() {
   const [heroComplete, setHeroComplete] = useState(false);
-  // A plain read, resolved fresh on every mount of this component (i.e. every
-  // navigation to "/"): true only once the intro has actually completed once
-  // this page load.
-  const skipIntro = heroSeenThisLoad;
+  // Resolved fresh on every mount of this component (i.e. every navigation
+  // to "/"): true once the intro has actually completed this page load.
+  const [skipIntro, setSkipIntro] = useState(heroSeenThisLoad);
+
+  // A hard refresh (or a deep link) can land the browser already scrolled
+  // away from the top via native scroll restoration. If the full intro ran
+  // anyway, HeroVideo would lock body scroll waiting on a video that's
+  // scrolled out of view — which mobile browsers often never actually play,
+  // freezing the page indefinitely. Skip the intro whenever we're not
+  // starting at the top, regardless of whether it's been "seen" before.
+  // useLayoutEffect (not useEffect) so this is corrected before paint.
+  useLayoutEffect(() => {
+    if (!skipIntro && window.scrollY > 0) {
+      setSkipIntro(true);
+    }
+  }, [skipIntro]);
 
   return (
     <>
