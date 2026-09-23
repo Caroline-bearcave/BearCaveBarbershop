@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "@/components/Nav";
 import HeroScrollScrubber from "@/components/HeroScrollScrubber";
 import ContentSection from "@/components/ContentSection";
@@ -71,11 +71,32 @@ export default function Home() {
   // scrolled out of view — which mobile browsers often never actually play,
   // freezing the page indefinitely. Skip the intro whenever we're not
   // starting at the top, regardless of whether it's been "seen" before.
-  // useLayoutEffect (not useEffect) so this is corrected before paint.
-  useLayoutEffect(() => {
-    if (!skipIntro && window.scrollY > 0) {
-      setSkipIntro(true);
-    }
+  //
+  // Mobile Safari frequently applies its scroll restoration *after* the
+  // first paint (once the page's true height settles), so checking once,
+  // synchronously, at mount is too early and misses it. Poll across a few
+  // frames instead. HeroVideo also has its own timeout safety valve in case
+  // this still misses it.
+  useEffect(() => {
+    if (skipIntro) return;
+    let cancelled = false;
+    let frame = 0;
+
+    const check = () => {
+      if (cancelled) return;
+      if (window.scrollY > 0) {
+        setSkipIntro(true);
+        return;
+      }
+      frame += 1;
+      if (frame < 10) requestAnimationFrame(check);
+    };
+
+    const raf = requestAnimationFrame(check);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+    };
   }, [skipIntro]);
 
   return (

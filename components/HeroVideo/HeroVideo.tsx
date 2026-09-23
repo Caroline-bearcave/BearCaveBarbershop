@@ -20,6 +20,7 @@ export default function HeroVideo({
 }: HeroVideoProps) {
   const [ended, setEnded] = useState(false);
   const hasRevealedRef = useRef(false);
+  const hasEndedRef = useRef(false);
 
   // Scroll is locked as soon as the video mounts and released the moment it
   // ends, so the visitor can't scroll past the intro mid-playback.
@@ -30,6 +31,19 @@ export default function HeroVideo({
     };
   }, []);
 
+  // Safety valve: mobile browsers can throttle or never actually play an
+  // autoplay video that's scrolled out of view (e.g. this mounted because a
+  // reload's scroll-restoration raced our own "already scrolled" check), in
+  // which case "ended" would never fire and scroll would stay locked
+  // forever. Force it open after a generous timeout no matter what.
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      if (!hasEndedRef.current) handleEnded();
+    }, 6000);
+    return () => window.clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
     if (!hasRevealedRef.current && e.currentTarget.currentTime >= revealAt) {
       hasRevealedRef.current = true;
@@ -38,6 +52,8 @@ export default function HeroVideo({
   };
 
   const handleEnded = () => {
+    if (hasEndedRef.current) return;
+    hasEndedRef.current = true;
     setEnded(true);
     document.body.style.overflow = "";
     onEnded?.();
