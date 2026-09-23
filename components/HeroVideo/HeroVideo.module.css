@@ -26,14 +26,3 @@
   pointer-events: none;
 }
 
-.scrollCue {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--color-cream);
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.75;
-}

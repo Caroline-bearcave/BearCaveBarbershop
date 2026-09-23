@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./HeroVideo.module.css";
 
 interface HeroVideoProps {
@@ -18,24 +18,14 @@ export default function HeroVideo({
   onReveal,
   onEnded,
 }: HeroVideoProps) {
-  const [ended, setEnded] = useState(false);
   const hasRevealedRef = useRef(false);
   const hasEndedRef = useRef(false);
 
-  // Scroll is locked as soon as the video mounts and released the moment it
-  // ends, so the visitor can't scroll past the intro mid-playback.
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  // Safety valve: mobile browsers can throttle or never actually play an
-  // autoplay video that's scrolled out of view (e.g. this mounted because a
-  // reload's scroll-restoration raced our own "already scrolled" check), in
-  // which case "ended" would never fire and scroll would stay locked
-  // forever. Force it open after a generous timeout no matter what.
+  // Scrolling is never blocked here — the video just plays as ambient
+  // background. Once it ends (or this safety valve fires, in case a
+  // scrolled-out-of-view video never fires "ended" on some mobile browsers)
+  // it hands off to the scroll-driven canvas frame sequence in the parent,
+  // which is already preloaded and ready regardless of video state.
   useEffect(() => {
     const timer = window.setTimeout(() => {
       if (!hasEndedRef.current) handleEnded();
@@ -54,8 +44,6 @@ export default function HeroVideo({
   const handleEnded = () => {
     if (hasEndedRef.current) return;
     hasEndedRef.current = true;
-    setEnded(true);
-    document.body.style.overflow = "";
     onEnded?.();
   };
 
@@ -73,8 +61,6 @@ export default function HeroVideo({
         onEnded={handleEnded}
       />
       <div className={styles.scrim} />
-
-      {!ended && <div className={styles.scrollCue}>Hold tight</div>}
     </section>
   );
 }

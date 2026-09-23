@@ -53,9 +53,9 @@ const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
 // Module-scoped (not sessionStorage/localStorage) so it resets on every real
 // page load — a hard refresh or fresh visit still replays the intro — but
 // survives client-side route changes within the same loaded app instance, so
-// navigating Home -> About -> Home again doesn't re-lock scroll or hide the
-// nav. Only ever written from onSequenceEnd below (never during render/SSR),
-// so double-invoked renders/effects just read it twice harmlessly instead of
+// navigating Home -> About -> Home again doesn't replay it. Only ever
+// written from onSequenceEnd below (never during render/SSR), so
+// double-invoked renders/effects just read it twice harmlessly instead of
 // corrupting each other.
 let heroSeenThisLoad = false;
 
@@ -65,18 +65,13 @@ export default function Home() {
   // to "/"): true once the intro has actually completed this page load.
   const [skipIntro, setSkipIntro] = useState(heroSeenThisLoad);
 
-  // A hard refresh (or a deep link) can land the browser already scrolled
-  // away from the top via native scroll restoration. If the full intro ran
-  // anyway, HeroVideo would lock body scroll waiting on a video that's
-  // scrolled out of view — which mobile browsers often never actually play,
-  // freezing the page indefinitely. Skip the intro whenever we're not
-  // starting at the top, regardless of whether it's been "seen" before.
-  //
-  // Mobile Safari frequently applies its scroll restoration *after* the
-  // first paint (once the page's true height settles), so checking once,
-  // synchronously, at mount is too early and misses it. Poll across a few
-  // frames instead. HeroVideo also has its own timeout safety valve in case
-  // this still misses it.
+  // Scrolling is never blocked during the intro, so this is just a nicety:
+  // a hard refresh (or a deep link) can land the browser already scrolled
+  // away from the top via native scroll restoration, in which case there's
+  // no point autoplaying/loading the intro video off-screen — skip straight
+  // to the finished state. Mobile Safari frequently applies its scroll
+  // restoration *after* first paint, so a single synchronous check at mount
+  // would miss it; poll across a few frames instead.
   useEffect(() => {
     if (skipIntro) return;
     let cancelled = false;

@@ -100,7 +100,9 @@ export default function Nav({ visible = true }: NavProps) {
         aria-hidden={!visible}
       >
         <span className={styles.hours}>
-          Tue – Fri: 9AM – 5PM · Sat: 9AM – 2PM
+          <span className={styles.hoursLine}>Tue - Fri: 9AM to 5PM</span>
+          <span className={styles.hoursSeparator}> · </span>
+          <span className={styles.hoursLine}>Sat: 9AM to 2PM</span>
         </span>
 
         <button

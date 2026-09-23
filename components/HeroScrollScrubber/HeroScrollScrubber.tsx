@@ -16,9 +16,9 @@ interface HeroScrollScrubberProps {
   revealAt?: number;
   welcomeImageSrc?: string;
   onSequenceEnd?: () => void;
-  // When true, the cinematic intro (video + scroll-scrubbed frames) is
-  // skipped entirely — used for repeat visits within the same tab session so
-  // navigating back to "/" doesn't re-lock scroll and force a replay.
+  // When true, the intro video is skipped entirely (jumps straight to the
+  // "finished" state) — used for repeat visits within the same tab session
+  // so navigating back to "/" doesn't force a replay.
   skipIntro?: boolean;
 }
 
@@ -116,22 +116,11 @@ export default function HeroScrollScrubber({
   }, [frameCount, getFrameSrc]);
 
   // Repeat visits within the same session skip the intro outright — jump
-  // straight to the "sequence finished" state (reveals the nav, unlocks
-  // scroll) instead of replaying the video and re-locking scroll.
+  // straight to the "sequence finished" state (reveals the nav) instead of
+  // replaying the video.
   useEffect(() => {
     if (skipIntro) onSequenceEnd?.();
   }, [skipIntro, onSequenceEnd]);
-
-  // HeroVideo locks scroll itself for the video-playing phase. Once it ends,
-  // scroll should only open up once frames are actually ready to scrub —
-  // if preload is somehow still running, keep the lock until it finishes.
-  useEffect(() => {
-    if (!videoEnded) return;
-    document.body.style.overflow = ready ? "" : "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [videoEnded, ready]);
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
@@ -161,8 +150,8 @@ export default function HeroScrollScrubber({
   }, [ready, drawFrame]);
 
   // Once preload completes, paint whatever frame the current scroll position
-  // calls for (frame_001 at rest, since progress is 0 while the video plays
-  // and scroll is locked) — this is what's revealed the moment the video ends.
+  // calls for (frame_001 at rest, if the visitor hasn't scrolled yet) — this
+  // is what's revealed the moment the video ends.
   useEffect(() => {
     if (ready) drawFrame(frameIndexMV.get());
   }, [ready, drawFrame, frameIndexMV]);
