@@ -23,14 +23,28 @@
   display: block;
   width: 140px;
   height: auto;
-  /* Halfway between left-aligned and fully centered. */
-  margin: 0 0 0.75rem calc((100% - 140px) / 4);
+  margin: 0 auto 0.75rem;
+}
+
+@media (min-width: 700px) {
+  .mark {
+    /* Halfway between left-aligned and fully centered. */
+    margin: 0 0 0.75rem calc((100% - 140px) / 4);
+  }
 }
 
 .tagline {
   font-size: 0.9rem;
   color: rgba(242, 234, 216, 0.65);
   max-width: 32ch;
+}
+
+@media (max-width: 699px) {
+  .tagline {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
 }
 
 .heading {
