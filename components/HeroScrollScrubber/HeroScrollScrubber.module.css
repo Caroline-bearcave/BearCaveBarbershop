@@ -6,7 +6,7 @@
 .sticky {
   position: sticky;
   top: 0;
-  height: 100dvh;
+  height: 100svh;
   width: 100%;
   overflow: hidden;
   background: var(--color-teal-deep);
