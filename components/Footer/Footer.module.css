@@ -20,11 +20,11 @@
 }
 
 .mark {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.4rem;
-  color: var(--color-gold);
-  margin-bottom: 0.5rem;
+  display: block;
+  width: 140px;
+  height: auto;
+  /* Halfway between left-aligned and fully centered. */
+  margin: 0 0 0.75rem calc((100% - 140px) / 4);
 }
 
 .tagline {

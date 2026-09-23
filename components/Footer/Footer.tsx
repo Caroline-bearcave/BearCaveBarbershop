@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./Footer.module.css";
 
 interface FooterProps {
@@ -15,7 +16,13 @@ export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
     <footer className={styles.footer}>
       <div className={styles.grid}>
         <div>
-          <div className={styles.mark}>Bear Cave Barbershop</div>
+          <Image
+            src="/images/footer-logo.webp"
+            alt="Bear Cave Barbershop"
+            width={1000}
+            height={1000}
+            className={styles.mark}
+          />
           <p className={styles.tagline}>
             A den for a proper cut and shave - old world craft, modern
             comfort.
