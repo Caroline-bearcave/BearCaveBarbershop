@@ -197,14 +197,16 @@ export default function HeroScrollScrubber({
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className={styles.revealImageWrap}
           >
-            <Image
-              src={welcomeImageSrc}
-              alt="Welcome to the Bear Cave"
-              width={1000}
-              height={1000}
-              priority
-              className={styles.revealImage}
-            />
+            <h1>
+              <Image
+                src={welcomeImageSrc}
+                alt="Bear Cave Barbershop — Cooroy"
+                width={1000}
+                height={1000}
+                priority
+                className={styles.revealImage}
+              />
+            </h1>
           </motion.div>
         </div>
 

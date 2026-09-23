@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import HeroScrollScrubber from "@/components/HeroScrollScrubber";
 import ContentSection from "@/components/ContentSection";
@@ -38,11 +39,37 @@ const GALLERY_IMAGES: Record<number, string> = {
   11: "/images/about-portrait.webp",
 };
 
-// Per-tile background-position override (defaults to the CSS class's
-// "center" otherwise) — only needed where the default crop hides the
-// interesting part of the image.
+// Per-tile object-position override (defaults to the CSS class's "center"
+// otherwise) — only needed where the default crop hides the interesting
+// part of the image.
 const GALLERY_IMAGE_POSITION: Record<number, string> = {
   11: "center top",
+};
+
+// Descriptive alt text per gallery position — describes what's actually
+// shown in each photo (see public/images/<file>.webp).
+const GALLERY_IMAGE_ALT: Record<number, string> = {
+  1: "Close-up of a textured fade haircut at Bear Cave Barbershop",
+  2: "Barbershop client with long wavy hair and a full beard styled at Bear Cave Barbershop",
+  3: "Side profile of a short back and sides haircut with a swept-back top at Bear Cave Barbershop",
+  4: "Interior of Bear Cave Barbershop showing the barber chairs and styling stations",
+  5: "Back view of a graduated haircut with silver-grey tones at Bear Cave Barbershop",
+  6: "Snoopy, the Bear Cave Barbershop mascot dog, sitting in the barber chair wearing a cape",
+  7: "Back view of a short, swept-back haircut at Bear Cave Barbershop",
+  8: "Profile of a textured crop fade haircut on a young client at Bear Cave Barbershop",
+  9: "Illustrated Bear Cave Barbershop mascot bear in a waistcoat, sitting in a barber chair",
+  10: "Back view of a tapered haircut with a V-shaped neckline at Bear Cave Barbershop",
+  11: "Judith and Caroline, barbers at Bear Cave Barbershop, standing together in the shop",
+};
+
+// Matches the grid's column spans (repeat(2,1fr) mobile / repeat(4,1fr)
+// desktop, see page.module.css) so next/image requests appropriately sized
+// sources instead of defaulting to 100vw.
+const GALLERY_IMAGE_SIZES: Record<(typeof GALLERY_SPANS)[number], string> = {
+  large: "(min-width: 701px) 50vw, 100vw",
+  wide: "(min-width: 701px) 50vw, 100vw",
+  normal: "(min-width: 701px) 25vw, 50vw",
+  tall: "(min-width: 701px) 25vw, 50vw",
 };
 
 const ADDRESS = "1/1a Emerald Street, Cooroy, QLD, Australia";
@@ -124,16 +151,19 @@ export default function Home() {
                   className={[styles.galleryItem, styles[span]]
                     .filter(Boolean)
                     .join(" ")}
-                  style={
-                    image
-                      ? {
-                          backgroundImage: `url(${image})`,
-                          backgroundPosition: GALLERY_IMAGE_POSITION[position],
-                        }
-                      : undefined
-                  }
                 >
-                  {!image && `Image ${position}`}
+                  {image ? (
+                    <Image
+                      src={image}
+                      alt={GALLERY_IMAGE_ALT[position]}
+                      fill
+                      sizes={GALLERY_IMAGE_SIZES[span]}
+                      className={styles.galleryImage}
+                      style={{ objectPosition: GALLERY_IMAGE_POSITION[position] }}
+                    />
+                  ) : (
+                    `Image ${position}`
+                  )}
                 </div>
               );
             })}

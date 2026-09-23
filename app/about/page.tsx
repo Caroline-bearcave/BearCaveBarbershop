@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import ContentSection from "@/components/ContentSection";
 import Footer from "@/components/Footer";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
-  title: "About | Bear Cave Barbershop",
+  title: "About | Bear Cave Barbershop — Cooroy",
   description:
     "The story behind Bear Cave Barbershop — Cooroy's local den for quality cuts and traditional barbering.",
 };
@@ -37,13 +38,16 @@ export default function AboutPage() {
                 Caroline has also passed that experience on to Judith, who trained at the Bear Cave and has become a talented barber in her own right - with plenty of regulars now asking for her by name.
               </p>
             </div>
-            <div
-              className={styles.storyImage}
-              style={{
-                backgroundImage: "url(/images/about-portrait.webp)",
-                backgroundPosition: "center top",
-              }}
-            />
+            <div className={styles.storyImage}>
+              <Image
+                src="/images/about-portrait.webp"
+                alt="Judith and Caroline, barbers at Bear Cave Barbershop, standing together in the shop"
+                fill
+                sizes="(min-width: 700px) 50vw, 100vw"
+                className={styles.storyImagePicture}
+                style={{ objectPosition: "center top" }}
+              />
+            </div>
           </div>
         </ContentSection>
 
@@ -55,12 +59,17 @@ export default function AboutPage() {
           <div className={styles.storyRow}>
             <div
               className={[styles.storyImage, styles.craftImage].join(" ")}
-              style={{
-                backgroundImage: "url(/images/7-about.webp)",
-                backgroundPosition: "center",
-                aspectRatio: "1086 / 1448",
-              }}
-            />
+              style={{ aspectRatio: "1086 / 1448" }}
+            >
+              <Image
+                src="/images/7-about.webp"
+                alt="Barber combing a client's hair during a haircut at Bear Cave Barbershop"
+                fill
+                sizes="(min-width: 700px) 32vw, 80vw"
+                className={styles.storyImagePicture}
+                style={{ objectPosition: "center" }}
+              />
+            </div>
             <div className={styles.storyText}>
               <h2 className={styles.sectionHeadingDark}>The Craft</h2>
               <p className={styles.paragraphDark}>
@@ -98,13 +107,16 @@ export default function AboutPage() {
                 And of course there’s <strong>Snoopy</strong> - our four-legged Bear Cave mascot and a familiar face to many of our customers.
               </p>
             </div>
-            <div
-              className={styles.storyImage}
-              style={{
-                backgroundImage: "url(/images/snoopy.webp)",
-                backgroundPosition: "center 20%",
-              }}
-            />
+            <div className={styles.storyImage}>
+              <Image
+                src="/images/snoopy.webp"
+                alt="Snoopy, the Bear Cave Barbershop mascot dog, looking at the camera"
+                fill
+                sizes="(min-width: 700px) 50vw, 100vw"
+                className={styles.storyImagePicture}
+                style={{ objectPosition: "center 20%" }}
+              />
+            </div>
           </div>
         </ContentSection>
       </main>

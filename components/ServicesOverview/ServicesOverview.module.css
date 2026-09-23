@@ -19,7 +19,7 @@
       rgba(8, 36, 38, 0.72),
       rgba(8, 36, 38, 0.72)
     ),
-    url("/background1.jpg");
+    url("/background1.webp");
   background-size: cover;
   background-position: center;
   color: var(--text-on-dark);
