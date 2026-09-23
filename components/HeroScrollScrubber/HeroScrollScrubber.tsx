@@ -16,6 +16,10 @@ interface HeroScrollScrubberProps {
   revealAt?: number;
   welcomeImageSrc?: string;
   onSequenceEnd?: () => void;
+  // When true, the cinematic intro (video + scroll-scrubbed frames) is
+  // skipped entirely — used for repeat visits within the same tab session so
+  // navigating back to "/" doesn't re-lock scroll and force a replay.
+  skipIntro?: boolean;
 }
 
 const defaultFrameSrc = (frameNumber: number) =>
@@ -30,6 +34,7 @@ export default function HeroScrollScrubber({
   revealAt,
   welcomeImageSrc = "/welcometo_logo.webp",
   onSequenceEnd,
+  skipIntro = false,
 }: HeroScrollScrubberProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -39,8 +44,8 @@ export default function HeroScrollScrubber({
 
   const [ready, setReady] = useState(false);
   const [loadedCount, setLoadedCount] = useState(0);
-  const [videoEnded, setVideoEnded] = useState(false);
-  const [revealed, setRevealed] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(skipIntro);
+  const [revealed, setRevealed] = useState(skipIntro);
 
   // frameNumber is 1-based (frame_001 .. frame_037); the image array is 0-based.
   const drawFrame = useCallback((frameNumber: number) => {
@@ -76,7 +81,8 @@ export default function HeroScrollScrubber({
   // Preload all 37 frames up front, starting immediately on mount — well
   // before the 4s hero video finishes — so the canvas is ready to take over
   // the instant the video ends. Both load and error resolve the promise so
-  // a missing frame can't hang loading forever.
+  // a missing frame can't hang loading forever. Runs regardless of skipIntro
+  // so scroll-driven frame scrubbing still works on repeat visits.
   useEffect(() => {
     let cancelled = false;
     let settled = 0;
@@ -108,6 +114,13 @@ export default function HeroScrollScrubber({
       cancelled = true;
     };
   }, [frameCount, getFrameSrc]);
+
+  // Repeat visits within the same session skip the intro outright — jump
+  // straight to the "sequence finished" state (reveals the nav, unlocks
+  // scroll) instead of replaying the video and re-locking scroll.
+  useEffect(() => {
+    if (skipIntro) onSequenceEnd?.();
+  }, [skipIntro, onSequenceEnd]);
 
   // HeroVideo locks scroll itself for the video-playing phase. Once it ends,
   // scroll should only open up once frames are actually ready to scrub —

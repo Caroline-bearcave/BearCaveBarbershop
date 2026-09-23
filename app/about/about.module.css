@@ -1,0 +1,194 @@
+.hero {
+  width: 100%;
+  background-color: var(--color-teal);
+  background-image: linear-gradient(
+      rgba(8, 36, 38, 0.72),
+      rgba(8, 36, 38, 0.72)
+    ),
+    url("/images/about-background.webp");
+  background-size: cover;
+  background-position: center;
+  color: var(--text-on-dark);
+  padding: clamp(7rem, 16vw, 10rem) var(--gutter) clamp(3.5rem, 8vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.25rem;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.05;
+  color: var(--color-cream);
+  text-transform: uppercase;
+  max-width: 20ch;
+  margin-bottom: 2rem;
+}
+
+.heroCard {
+  margin: 0 auto;
+  max-width: 52ch;
+  padding: 1.5rem clamp(1.25rem, 3vw, 2rem);
+  border-radius: 1.25rem;
+  background: rgba(242, 234, 216, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 164, 76, 0.25);
+}
+
+.heroCard p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(242, 234, 216, 0.85);
+}
+
+.sectionHeading {
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  color: var(--color-teal-deep);
+  margin-bottom: 1rem;
+}
+
+.sectionHeadingDark {
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-on-cream);
+  max-width: 55ch;
+}
+
+.paragraph + .paragraph {
+  margin-top: 1rem;
+}
+
+.paragraphDark {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(242, 234, 216, 0.8);
+  max-width: 55ch;
+}
+
+.paragraphDark + .paragraphDark {
+  margin-top: 1rem;
+}
+
+.storyRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 700px) {
+  .storyRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .reverse {
+    flex-direction: row-reverse;
+  }
+
+  .craftImage {
+    max-width: 32%;
+  }
+}
+
+.craftImage {
+  max-width: 80%;
+}
+
+@media (max-width: 699px) {
+  /* Text first, image below, on mobile only — desktop keeps its
+     image-left/text-right source order untouched. */
+  .craftImage {
+    order: 1;
+  }
+}
+
+.storyText {
+  flex: 1;
+}
+
+.storyImage {
+  flex: 1;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  border: 1px solid rgba(201, 164, 76, 0.4);
+  background-color: var(--color-teal);
+  background-image: linear-gradient(
+    155deg,
+    var(--color-teal) 0%,
+    var(--color-teal-deep) 100%
+  );
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(242, 234, 216, 0.4);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quoteSection {
+  width: 100%;
+  background: var(--color-teal-deep);
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  display: flex;
+  justify-content: center;
+}
+
+.quoteCard {
+  max-width: 60ch;
+  width: 100%;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border-radius: 1.25rem;
+  background: rgba(242, 234, 216, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 164, 76, 0.25);
+  text-align: center;
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  line-height: 1.5;
+  color: var(--color-cream);
+  margin-bottom: 1rem;
+}
+
+.quoteAttribution {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.craftPanel {
+  border-radius: 20px;
+}
+
+.ctaPanel {
+  border-radius: 20px;
+}
+

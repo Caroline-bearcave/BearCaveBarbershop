@@ -65,3 +65,9 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+
+.bottom a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

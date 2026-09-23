@@ -3,6 +3,7 @@
   padding: clamp(3rem, 8vw, 6rem) var(--gutter);
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .inner {

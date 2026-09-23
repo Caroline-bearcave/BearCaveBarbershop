@@ -5,8 +5,9 @@ interface FooterProps {
 }
 
 const DEFAULT_HOURS = [
-  { day: "Tue – Sat", time: "9am – 5pm" },
-  { day: "Sun – Mon", time: "Closed" },
+  { day: "Tue – Fri:", time: "9am – 5pm" },
+  { day: "Saturday:", time: "9am – 2pm" },
+  { day: "Sun – Mon:", time: "Closed" },
 ];
 
 export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
@@ -16,7 +17,7 @@ export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
         <div>
           <div className={styles.mark}>Bear Cave Barbershop</div>
           <p className={styles.tagline}>
-            A den for a proper cut and shave — old-world craft, modern
+            A den for a proper cut and shave - old world craft, modern
             comfort.
           </p>
         </div>
@@ -26,7 +27,7 @@ export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
           <div className={styles.list}>
             {hours.map((slot) => (
               <span key={slot.day}>
-                {slot.day} &mdash; {slot.time}
+                {slot.day} {slot.time}
               </span>
             ))}
           </div>
@@ -37,8 +38,8 @@ export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
           <div className={styles.list}>
             <span>1/1a Emerald Street, Cooroy, QLD, Australia</span>
             <a href="tel:+61402826513">0402 826 513</a>
-            <a href="mailto:hello@bearcavebarbershop.example">
-              hello@bearcavebarbershop.example
+            <a href="mailto:bearcavecooroy@gmail.com">
+              bearcavecooroy@gmail.com
             </a>
           </div>
         </div>
@@ -46,7 +47,13 @@ export default function Footer({ hours = DEFAULT_HOURS }: FooterProps) {
 
       <div className={styles.bottom}>
         <span>&copy; {new Date().getFullYear()} Bear Cave Barbershop</span>
-        <span>Made with care.</span>
+        <span>
+          Made with care by{" "}
+          <a href="https://relead.com.au" target="_blank" rel="noopener noreferrer">
+            Relead Digital
+          </a>
+          .
+        </span>
       </div>
     </footer>
   );
