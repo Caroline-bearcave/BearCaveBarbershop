@@ -27,7 +27,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <ContentSection direction="left" variant="plain">
+        {/* Sits at the fold, so it renders visible immediately instead of
+            waiting for a scroll-triggered fade-in (blank cream on mobile). */}
+        <ContentSection direction="left" variant="plain" animate={false}>
           <div className={styles.storyRow}>
             <div className={styles.storyText}>
               <h2 className={styles.sectionHeading}>The Beginning</h2>
@@ -43,6 +45,7 @@ export default function AboutPage() {
                 src="/images/about-portrait.webp"
                 alt="Judith and Caroline, barbers at Bear Cave Barbershop, standing together in the shop"
                 fill
+                priority
                 sizes="(min-width: 700px) 50vw, 100vw"
                 className={styles.storyImagePicture}
                 style={{ objectPosition: "center top" }}

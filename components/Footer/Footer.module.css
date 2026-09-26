@@ -67,6 +67,25 @@
   color: var(--color-gold);
 }
 
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.icon {
+  width: 1.35em;
+  height: 1.35em;
+  flex-shrink: 0;
+}
+
 .bottom {
   max-width: var(--content-max);
   margin: 2.5rem auto 0;

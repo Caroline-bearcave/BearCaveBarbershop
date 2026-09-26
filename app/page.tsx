@@ -181,9 +181,10 @@ export default function Home() {
             <div className={styles.contactHours}>
               <span>{ADDRESS}</span>
               <a href="tel:+61402826513">0402 826 513</a>
-              <span>Tue-Fri: 9am – 5pm</span>
-              <span>Saturday: 9am – 2pm</span>
-              <span>Sunday &amp; Monday: Closed</span>
+              <span>Monday: 9am - 4pm</span>
+              <span>Tue-Fri: 9am - 5pm</span>
+              <span>Saturday: 9am - 2pm</span>
+              <span>Sunday: Closed</span>
             </div>
             <div className={styles.contactMap}>
               <iframe

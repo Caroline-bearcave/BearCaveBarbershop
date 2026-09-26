@@ -39,7 +39,7 @@ const businessJsonLd = {
     addressCountry: "AU",
   },
   telephone: "+61402826513",
-  openingHours: ["Tu-Fr 09:00-17:00", "Sa 09:00-14:00"],
+  openingHours: ["Mo 09:00-16:00", "Tu-Fr 09:00-17:00", "Sa 09:00-14:00"],
 };
 
 export default function RootLayout({

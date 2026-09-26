@@ -45,18 +45,44 @@
   color: var(--color-cream);
   text-align: center;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
-@media (max-width: 640px) {
+/* Days are bold; the times are regular weight. */
+.hoursTime {
+  font-weight: 400;
+}
+
+/* Desktop divider: the "·" text is hidden and drawn as a vertical line. */
+.hoursSeparator {
+  font-size: 0;
+  width: 1px;
+  height: 1rem; /* not em: font-size is 0 here, so em would collapse to 0 */
+  margin: 0 1.5rem;
+  background: rgba(242, 234, 216, 0.45);
+}
+
+/* Mon and Tue-Fri stay together on one row (never wrapping). */
+.hoursRow {
+  display: flex;
+  align-items: center;
+}
+
+/* Narrower screens: Saturday drops to a second row under Mon | Tue-Fri. */
+@media (max-width: 900px) {
   .hours {
-    display: flex;
     flex-direction: column;
-    font-size: 0.72rem;
-    white-space: normal;
-    max-width: 45vw;
+    row-gap: 0.2rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.03em;
   }
 
   .hoursSeparator {
+    margin: 0 0.75rem;
+  }
+
+  .hoursBreak {
     display: none;
   }
 }
@@ -159,6 +185,19 @@
 
 .mobileLink:hover {
   background: rgba(242, 234, 216, 0.08);
+}
+
+.mobileSocials {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(242, 234, 216, 0.15);
+}
+
+.mobileSocials .mobileLink {
+  flex: 1;
 }
 
 .mobileLinkActive {
